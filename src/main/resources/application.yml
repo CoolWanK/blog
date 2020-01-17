@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    mode: LEGACYHTML5
+
+comment.avatar: /images/qq.jpg
+server:
+  tomcat:
+    redirect-context-root:

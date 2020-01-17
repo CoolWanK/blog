@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Class-Path: jcl-over-slf4j-1.7.25.jar groovy-2.4.12.jar xercesImpl-2.1
+ 1.0.jar logback-classic-1.1.11.jar ognl-3.0.8.jar spring-core-4.3.11.
+ RELEASE.jar spring-boot-starter-tomcat-1.5.7.RELEASE.jar jboss-loggin
+ g-3.3.1.Final.jar hibernate-commons-annotations-5.0.1.Final.jar sprin
+ g-boot-1.5.7.RELEASE.jar hibernate-core-5.0.12.Final.jar tomcat-embed
+ -websocket-8.5.20.jar spring-webmvc-4.3.11.RELEASE.jar mysql-connecto
+ r-java-5.1.44.jar unbescape-1.1.0.RELEASE.jar javax.transaction-api-1
+ .2.jar hibernate-jpa-2.1-api-1.0.0.Final.jar dom4j-1.6.1.jar xml-apis
+ -1.4.01.jar slf4j-api-1.7.25.jar spring-data-jpa-1.11.7.RELEASE.jar a
+ ntlr-2.7.7.jar spring-jdbc-4.3.11.RELEASE.jar jul-to-slf4j-1.7.25.jar
+  spring-boot-starter-aop-1.5.7.RELEASE.jar spring-tx-4.3.11.RELEASE.j
+ ar spring-boot-starter-thymeleaf-1.5.7.RELEASE.jar logback-core-1.1.1
+ 1.jar snakeyaml-1.17.jar commonmark-0.10.0.jar tomcat-jdbc-8.5.20.jar
+  spring-boot-starter-web-1.5.7.RELEASE.jar spring-expression-4.3.11.R
+ ELEASE.jar jackson-annotations-2.8.0.jar thymeleaf-2.1.5.RELEASE.jar 
+ classmate-1.3.4.jar spring-boot-starter-logging-1.5.7.RELEASE.jar spr
+ ing-data-commons-1.13.7.RELEASE.jar spring-boot-starter-data-jpa-1.5.
+ 7.RELEASE.jar tomcat-embed-el-8.5.20.jar commonmark-ext-heading-ancho
+ r-0.10.0.jar hibernate-entitymanager-5.0.12.Final.jar spring-boot-sta
+ rter-1.5.7.RELEASE.jar jackson-core-2.8.10.jar validation-api-1.1.0.F
+ inal.jar spring-orm-4.3.11.RELEASE.jar thymeleaf-layout-dialect-1.4.0
+ .jar spring-aspects-4.3.11.RELEASE.jar spring-boot-starter-jdbc-1.5.7
+ .RELEASE.jar javassist-3.21.0-GA.jar tomcat-embed-core-8.5.20.jar spr
+ ing-context-4.3.11.RELEASE.jar nekohtml-1.9.22.jar aspectjweaver-1.8.
+ 10.jar hibernate-validator-5.3.5.Final.jar commonmark-ext-gfm-tables-
+ 0.10.0.jar tomcat-juli-8.5.20.jar jackson-databind-2.8.10.jar spring-
+ aop-4.3.11.RELEASE.jar jandex-2.0.0.Final.jar spring-beans-4.3.11.REL
+ EASE.jar spring-boot-autoconfigure-1.5.7.RELEASE.jar log4j-over-slf4j
+ -1.7.25.jar spring-web-4.3.11.RELEASE.jar thymeleaf-spring4-2.1.5.REL
+ EASE.jar spring-boot-devtools-1.5.7.RELEASE.jar
+Main-Class: com.wjk.blog.BlogApplication
+

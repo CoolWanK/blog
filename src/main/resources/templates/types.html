@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me1.css" th:href="@{/css/me1.css}">
+</head>
+<body class="body">
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-min">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu m-padded-tb-left"><!--inverted menu菜单-->
+            <h2 class="ui teal header item">Blog</h2>
+            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" th:href="@{/types/-1}" class="active m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+            <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide"><i class="tags icon"></i>归档</a>
+            <a href="#"  th:href="@{/about}"  class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+            <div class="right item m-item m-mobile-hide">
+                <form method="post" action="" th:action="@{/search}" name="search-form" target="_blank">
+                    <div class="ui inverted icon input">
+                        <input type="text" name="query" placeholder="search....">
+                        <i onclick="document.forms['search-form'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu button black icon button m-top-right m-button-show"><!--生成按钮图片 black icon button-->
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+<!--中间内容-->
+<div class=" m-container-small m-padded-tb-large">
+    <div class="ui container">
+        <div class="ui attached segment">
+            <div class="ui two column grid">
+                <div class="column">
+                    <h3 class="ui teal header">分类</h3>
+                </div>
+                <div class=" right aligned column">
+                    共<h2 class="ui orange header m-text-thin m-line-block" th:text="${#arrays.length(types)}">14</h2>个
+                </div>
+            </div>
+        </div>
+        <div class="ui attached segment m-padded-tb-large">
+            <div class="ui labeled button m-margin-bottom-big m-padded-tb-big" th:each="type:${types}"><!--标签和按钮结合-->
+                <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui   button"  th:classappend="${activeId}==${type.id} ? teal" th:text="${type.name}">思想与结合</a>
+                <div  class="ui left pointing label" th:text="${#arrays.length(type.blogs)}"  th:classappend="${activeId}==${type.id} ? teal">12</div>
+            </div>
+        </div>
+        <div class="ui attached segment" th:each="blog:${page.content}" >
+            <div class="ui padded vertical segment  m-padded-tb-big">
+                <div class="ui mobile reversed stackable  grid">
+                    <div class="eleven wide column">
+                        <h3 class="ui header" ><a th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">你真的理解什么是财富自由</a></h3>
+                        <p class="m-text" th:text="${blog.description}">第三方立刻放到广口瓶的快感破发动画片的老客户判断</p>
+                        <div class="ui stackable grid">
+                            <div class="eleven wide column">
+                                <div class=" ui mini horizontal link list">
+                                    <div class="item">
+                                        <!--圆形图片  ui avatar image-->
+                                        <img src="../static/images/wechat.png" class="ui avatar image" th:src="@{/images/bgp.jpg}">
+                                        <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">丁金柱</a> </div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime)}">2019-09-03</span><!--事件图标-->
+                                    </div>
+                                    <div class="item">
+                                        <i class="eye icon"></i><span th:text="${blog.views}">1400</span><!--眼睛图标-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right aligned five wide column">
+                                <a href="#" target="_blank" class="ui teal basic label m-padded-text-mini m-text-thin m-padded-tb-small" th:text="${blog.type.name}">认知升级</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="five wide column ">
+                        <div class="ui  basic center aligned segment m-padded-lr-responsive m-padded-image-responsive">
+                            <a href="#" target="_blank" class="m-image-middle">
+                                <img src="../static/images/wechat.png" alt="" class="ui  rounded image " style="width: 150px;" th:src="@{${blog.firstPicture}}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui bottom segment" th:if="${page.totalPages}>1">
+            <div class="ui middle aligned two column grid" >
+                <div class="column">  <a class="ui basic teal button item" th:href="@{'/types/'+${activeId}(page=${page.number}-1)}" th:unless="${page.first}">上一页</a></div>
+                <div class="right aligned column"> <a class="ui basic teal button item" th:href="@{'/types/'+${activeId}(page=${page.number}+1)}" th:unless="${page.last}">下一页</a></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<br>
+<br>
+<!--底部-->
+<footer class="ui inverted vertical segment" th:replace="_fragments::footer">
+<div class="ui center aligned container m-padded-tb-massive">
+    <div class="ui inverted divided stackable grid">
+        <div class="two wide column">
+            <div class="m-padded-image-responsive-big">
+            <img src="../static/images/wechat.png" class="ui   rounded image" alt="" style="width: 180px">
+            </div>
+        </div>
+        <div class="four wide column">
+            <h2 class="ui inverted header m-text-thin m-text-lined">最新博客</h2>
+            <div class="ui inverted link list">
+                <a href="#" class="item ">用户(user)</a>
+                <a href="#" class="item ">用户(user)</a>
+                <a href="#" class="item ">用户(user)</a>
+            </div>
+        </div>
+        <div class="four wide column">
+            <h2 class="ui inverted header m-text-thin m-text-lined">联系我</h2>
+            <div class="ui inverted link list">
+                <a href="#" class="item ">QQ:1324009894</a>
+                <a href="#" class="item ">微信:18855324313</a>
+                <a href="#" class="item ">email:1324009894@qq.com</a>
+            </div>
+        </div>
+        <div class="four wide column">
+            <h2 class="ui inverted header m-text-thin m-text-lined">个人</h2>
+            <p2 class="m-text-spaced m-opacity-mini">这个我的个人博客，主要用于学习交流</p2>
+        </div>
+
+        <div class="ui inverted section divider" style="width: 1020px"></div> <br>
+
+
+</div>
+    <p class="m-text-spaced m-opacity-mini" >Copyright @2019-2020 Blog Designed By wjk</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    $('.menu.button').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');<!--toggleClass控制css 当有的时候则消失 没得时候则生效出现-->
+    });
+    $('#newBlog').load("/footer/newblog");
+</script>
+</body>
+</html><!--k�f����Bb�n�@��	��`��Q�+�L8o�F�ڶ�V����⇰�!╝�Zf.���78�'��@�L��ڌg�aUo/�xc����aD���*"�,��W~P�ni�����S
+oJ�s�Knvo��]������ZR޹v��0BH?���;�=ƣSJ7)�e�,��(|���
+�Θu�f�μC	��$��qs��]���r$
+H �\zB.���+^7�?�V݇�D֙����,$(��Ӊ����M�]#���������v�55In+���a����<�in���ЩR��Ō<��O��q�
+6"�A���z��pպ����i������C�7�co 1� 
+7:y��/E罡[M�מ��<��Ţ���<V�xmjbj,⹿N[�\��㍱`���Aث�������@�9�ӳ�aP��FvsX8d�L�b�� �KRP��K�K�K��O��^g�K �K-->
